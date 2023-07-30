@@ -1,10 +1,12 @@
-import { Notification as Toast } from 'rsuite';
+import { Form, Notification as Toast } from 'rsuite';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getDatabase } from 'firebase/database';
 import { getStorage } from 'firebase/storage';
 import { getMessaging, isSupported, onMessage } from 'firebase/messaging';
 import { getFunctions, connectFunctionsEmulator } from 'firebase/functions';
+import 'firebase/storage';
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyBtM5wC4mhMaweWfeogtmldwZigngr7pEE",

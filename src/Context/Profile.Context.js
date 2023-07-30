@@ -3,6 +3,7 @@ import { auth, database } from "../misc/firebase";
 import { ref, onValue, off } from "firebase/database";
 import { onAuthStateChanged } from "firebase/auth";
 
+
 const ProfileContext = createContext();
 
 export const ProfileProvider = ({ children }) => {
@@ -19,10 +20,11 @@ export const ProfileProvider = ({ children }) => {
                 userRef = ref(database, (`/profiles/${authObj.uid}`));
                 console.log("auth is present");
                 onValue(userRef, snap => {
-                    const {name,createdAt} = snap.val();
+                    const {name,createdAt,avatar} = snap.val();
 
                     const data = {
                         name,
+                        avatar,
                         createdAt,
                         uid: authObj.uid,
                         email: authObj.email
