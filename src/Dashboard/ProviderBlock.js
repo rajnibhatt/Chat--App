@@ -27,7 +27,8 @@ const updateIsConnected = (providerId,value)=>{
 const unlink = async(ProviderId) => {
     try{
         if(auth.currentUser.providerData.length === 1){
-            throw new Error(`you can not disconnect from ${ProviderId.id}`)
+            console.log("Data: ",ProviderId);
+            throw new Error(`you can not disconnect from ${ProviderId}`)
         }
    await auth.currentUser.unlink(ProviderId);
    updateIsConnected(ProviderId,false);

@@ -5,6 +5,7 @@ import EditableInput from "../Component/EditableIInputs";
 import { database } from "../misc/firebase";
 import { ref, set } from "firebase/database";
 import ProviderBlock from "./ProviderBlock";
+import AvatarBtn from "./AvatarBtn";
 
 
 const Dashboard = ({onSignOut}) => {
@@ -36,6 +37,7 @@ const onSave = async newData =>{
         onSave = {onSave}
         label = {<h6 className="mb-2">NickName</h6>}
         />
+        <AvatarBtn></AvatarBtn>
     </Drawer.Body>
     <Drawer.Footer>
     <Button block color="red" onClick={onSignOut}>
