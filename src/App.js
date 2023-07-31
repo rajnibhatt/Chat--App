@@ -4,7 +4,7 @@ import 'rsuite/dist/styles/rsuite-default.css';
 import { Switch } from 'react-router';
 import SignIn from './Pages/Signin';
 import PrivateRoute from './Component/PrivateRoute';
-import Home from './Pages/Home';
+import Home from './Pages/Home/Index';
 import PublicRoute from './Component/PublicRoute';
 import { ProfileProvider } from './Context/Profile.Context';
 
