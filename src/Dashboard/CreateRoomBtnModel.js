@@ -3,6 +3,7 @@ import { useModelState } from "../misc/customhooks";
 import { Button, ControlLabel, FormControl, FormGroup, Icon, Modal, Form, Schema, Alert } from "rsuite";
 import { database,auth } from "../misc/firebase";
 import { serverTimestamp } from 'firebase/database';
+import { ref, push } from "firebase/database";
 
 
 const {StringType} = Schema.Types;
@@ -43,7 +44,7 @@ const newRoomData = {
 };
 
 try{
-   await database.ref('rooms').push(newRoomData);
+   await push(ref(database, 'rooms'), newRoomData);
    Alert.info(`${formValue.name} has been created`,4000);
    setIsLoading(false);
    SetFormValue(INITIAL_FORM);
