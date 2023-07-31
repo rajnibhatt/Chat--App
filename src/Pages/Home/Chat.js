@@ -5,6 +5,7 @@ import Message from "../../Component/chat-window/message";
 import ChatBottom from "../../Component/chat-window/Bottom";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import { useRooms } from "../../Context/Rooms.Context";
+import { CurrentRoomProvider } from "../../Context/Current-room.context";
 
 const Chat = () => {
 
@@ -12,16 +13,21 @@ const {chatId} = useParams();
 const rooms = useRooms();
 
 if(!rooms){
-    return <Loader center vertical size="md" content="Loading" speed="sllow"></Loader>
+    return <Loader center vertical size="md" content="Loading" speed="slow"></Loader>
 }
 const currentRoom = rooms.find(room=> room.id === chatId);
 
 if(!currentRoom){
     return <h6 className="text-center mt-page">chat {chatId} NOT FOUD</h6>
 }
+const {name,description} = currentRoom;
+const currentRoomData = {
+    name,
+    description
 
+}
     return(
-        <>
+        <CurrentRoomProvider data={currentRoomData}>
             <div className="chat-top">
                 <ChatTop></ChatTop>
             </div>
@@ -34,7 +40,7 @@ if(!currentRoom){
                 <ChatBottom></ChatBottom>
             </div>
           
-        </>
+        </CurrentRoomProvider>
     )
 }
 
