@@ -1,4 +1,4 @@
-import React from "react";
+import React,{memo} from "react";
 import { useCurrentRoom } from "../../../Context/Current-room.context";
 import { Button, Modal } from "rsuite";
 import { useModelState } from "../../../misc/customhooks";
@@ -31,4 +31,4 @@ const RoomInfoBtnModel = ()=>{
 )
 };
 
-export default RoomInfoBtnModel;
+export default memo(RoomInfoBtnModel);
