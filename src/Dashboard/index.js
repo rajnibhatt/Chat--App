@@ -3,17 +3,19 @@ import { Drawer,Button, Divider, Alert } from 'rsuite';
 import { useProfile } from "../Context/Profile.Context";
 import EditableInput from "../Component/EditableIInputs";
 import { database } from "../misc/firebase";
-import { ref, set } from "firebase/database";
+import { ref, update } from "firebase/database";
 import ProviderBlock from "./ProviderBlock";
 import AvatarBtn from "./AvatarBtn";
-
+import { getUserUpdates } from "../misc/helper";
 
 const Dashboard = ({onSignOut}) => {
 const {profile} = useProfile();
 const onSave = async newData =>{
-    const userNickNameRef = ref(database, `/Profiles/${profile.uid}/name`);
     try{
-        await set(userNickNameRef, newData);
+        
+      const updates =  await getUserUpdates(profile.uid,'name',newData,database);
+       await update(ref(database),updates);
+
         Alert.success('Nick name has been updated',4000);
     }catch(err){
         Alert.error(err.message,4000);
