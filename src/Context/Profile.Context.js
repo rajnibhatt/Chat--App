@@ -48,7 +48,7 @@ export const ProfileProvider = ({ children }) => {
                 });
 
 onValue(ref(database,'.info/connected'), snapshot=> {
-    if (snapshot.val() === false) {
+    if (!!snapshot.val() === false) {
         return;
     };
 
