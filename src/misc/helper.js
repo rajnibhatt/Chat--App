@@ -1,4 +1,4 @@
-import { equalTo, get, orderByChild, query,ref } from "firebase/database";
+import { equalTo, get, orderByChild, query,ref as dbRef } from "firebase/database";
 
 export function getNameInitials(name){
     const splitName = name.toUpperCase().split('');
@@ -24,7 +24,7 @@ export async function getUserUpdates(userId, keyToUpdate, value, db){
 
     const getMsgs = get(
         query(
-        ref(db,'/messages'),
+        dbRef(db,'/messages'),
         orderByChild('author/uid'),
         equalTo(userId),
     
@@ -32,7 +32,7 @@ export async function getUserUpdates(userId, keyToUpdate, value, db){
 
     const getRooms = get(
         query(
-            ref(db,'/rooms'),
+            dbRef(db,'/rooms'),
             orderByChild('lastMessage/author/uid'),
             equalTo(userId)
 
