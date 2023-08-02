@@ -1,29 +1,40 @@
+
 {
   "rules": {
-    "profiles":{
-      "$user_id":{
+    "profiles": {
+      "$user_id": {
         ".read": "$user_id === auth.uid",
         ".write": "$user_id === auth.uid"
       }
     },
-    "rooms":{
-      ".read": "auth !== null",
-       ".write": "auth !== null",
-      "$room_id":{
-          ".read": "auth !== null",
-          ".write": "auth !== null"
-      }
-    },
-    "messages":{
+    "rooms": {
       ".read": "auth !== null",
       ".write": "auth !== null",
-      ".indexOn": ["roomId", "author/uid"],
-      "message_id":{
+      "$room_id": {
         ".read": "auth !== null",
         ".write": "auth !== null"
       }
     },
+    "messages": {
+      ".read": "auth !== null",
+      ".write": "auth !== null",
+      ".indexOn": ["roomId", "author/uid"],
+      "$message_id": {  
+        ".read": "auth !== null",
+        ".write": "auth !== null"
+      }
+    },
+      
+      "status": {
+      "$user_id": {  
+       ".read": "$user_id === auth.uid",
+        ".write": "$user_id === auth.uid"
+      }
+    },
+      
     ".read": false,
     ".write": false
   }
 }
+
+
