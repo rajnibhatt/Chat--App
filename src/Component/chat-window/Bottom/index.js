@@ -4,6 +4,7 @@ import { useProfile } from '../../../Context/Profile.Context';
 import { serverTimestamp,push,ref,update } from "firebase/database";
 import { useParams } from 'react-router-dom';
 import { database } from "../../../misc/firebase";
+import AttachmmenttBtnModel from "./AttachmentBtnModel";
 
 function assembleMessage(profile,chatId){
     return {
@@ -77,6 +78,7 @@ setIsLoading(false);
   
   return  <div> 
   <InputGroup>
+  <AttachmmenttBtnModel/>
   <Input 
   placeholder="Write a new message here..."  
   value={input}
