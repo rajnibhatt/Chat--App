@@ -30,6 +30,9 @@ export const ProfileProvider = ({ children }) => {
         const authUnsub = onAuthStateChanged(auth, async authObj=>{
             console.log("calling authUnSub");
             if(authObj){
+
+                console.log("user-id",authObj.uid);
+
                 userStatusRef = ref(database,(`/status/${authObj.uid}`));
                 userRef = ref(database, (`/profiles/${authObj.uid}`));
                 console.log("auth is present");
