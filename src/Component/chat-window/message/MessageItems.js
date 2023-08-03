@@ -8,10 +8,27 @@ import { Button } from "rsuite";
 import { useCurrentRoom } from "../../../Context/Current-room.context";
 import { auth } from "../../../misc/firebase";
 import { useHover,useMediaQuery } from "../../../misc/customhooks";
-import IconBtnControl from '../message/IconBtnControl'
+import IconBtnControl from '../message/IconBtnControl';
+import ImgBtnModal from '../message/ImgBtnModal';
+
+
+const renderFileMessage = (file)=>{
+    if(file.contentType.includes('image')){
+        return(
+        <div className="height-220">
+            <ImgBtnModal src={file.url} fileName = {file.name}/>
+        </div>
+        );
+    } else {
+
+        return <a href={file.urrl}>Download {file.name}</a>
+    }
+
+
+}
 
 const MessageItems = ({message,handleAdmin,handleLike,handleDelete}) => {
-    const {author,createdAt,txt,likes,likeCount} = message;
+    const {author,createdAt,txt,file,likes,likeCount} = message;
     const [selfRef,isHovered] = useHover();
     const isMobile = useMediaQuery('(max-width: 992px)');
     const isAdmin = useCurrentRoom(v => v.isAdmin);
@@ -72,8 +89,8 @@ const MessageItems = ({message,handleAdmin,handleLike,handleDelete}) => {
    
     </div>
     <div>
-        
-         <span className="word-breal-all">{txt}</span>
+        {txt && <span className="word-breal-all">{txt}</span>}
+        {file && renderFileMessage(file)}
     </div>
 </li>
 );

@@ -32,7 +32,7 @@ const RoomItem = ({room})=>{
             </div>
             <div className="text-disappear ml-2">
                     <div className="italic">{lastMessage.author.name}</div>
-                    <span>{lastMessage.txt}</span>
+                    <span>{lastMessage.txt || lastMessage.file.name}</span>
             </div>
             </>
                 ):(
