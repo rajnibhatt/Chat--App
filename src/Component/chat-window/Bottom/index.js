@@ -16,6 +16,7 @@ function assembleMessage(profile,chatId){
 
         },
         createdAt: serverTimestamp(),
+        likeCount:0,
     };
 }
 
