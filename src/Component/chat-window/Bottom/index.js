@@ -5,6 +5,7 @@ import { serverTimestamp,push,ref,update } from "firebase/database";
 import { useParams } from 'react-router-dom';
 import { database } from "../../../misc/firebase";
 import AttachmmenttBtnModel from "./AttachmentBtnModel";
+import AudioMsgBtn from '../message/ImgBtnModal';
 
 function assembleMessage(profile,chatId){
     return {
@@ -111,6 +112,7 @@ setIsLoading(false);
   return  <div> 
   <InputGroup>
   <AttachmmenttBtnModel afterUpload={afterUpload}/>
+  <AudioMsgBtn afterUpload={afterUpload}/>
   <Input 
   placeholder="Write a new message here..."  
   value={input}

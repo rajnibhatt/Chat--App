@@ -1,4 +1,5 @@
 import { equalTo, get, orderByChild, query,ref as dbRef } from "firebase/database";
+import { message } from "rsuite";
 
 export function getNameInitials(name){
     const splitName = name.toUpperCase().split('');
@@ -52,4 +53,17 @@ export async function getUserUpdates(userId, keyToUpdate, value, db){
     updates[`/rooms/${roomSnap.key}/lastMessage/author/${keyToUpdate}`] = value;
   });
   return updates;
+}
+export function groupBy(array,groupingKeyFn){
+    return array.reduce((result,item) => {
+        const groupingKey = groupingKeyFn(item);
+
+if(!result[groupingKey]){
+    result[groupingKey] = [];
+
+}
+result[groupingKey].push(item);
+
+        return result;
+    },{});
 }

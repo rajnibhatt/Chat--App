@@ -12,21 +12,26 @@ import IconBtnControl from '../message/IconBtnControl';
 import ImgBtnModal from '../message/ImgBtnModal';
 
 
-const renderFileMessage = (file)=>{
+const renderFileMessage = file=>{
     if(file.contentType.includes('image')){
         return(
         <div className="height-220">
             <ImgBtnModal src={file.url} fileName = {file.name}/>
         </div>
         );
-    } else {
-
-        return <a href={file.urrl}>Download {file.name}</a>
-    }
-
+    } 
+    if(file.contentType.includes('audio')){
+        return <audio controls>
+                <source src={file.url} type="audio/mp3"/>
+                your broweser does not support the audio element 
+              </audio>
 
 }
 
+     return <a href={file.urrl}>Download {file.name}</a>
+
+
+}
 const MessageItems = ({message,handleAdmin,handleLike,handleDelete}) => {
     const {author,createdAt,txt,file,likes,likeCount} = message;
     const [selfRef,isHovered] = useHover();
